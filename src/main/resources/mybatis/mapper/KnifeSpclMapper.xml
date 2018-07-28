@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zuel.mould.dao.KnifeSpclMapper">
+  <resultMap id="BaseResultMap" type="org.zuel.mould.bean.KnifeSpcl">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="dia" jdbcType="DECIMAL" property="dia" />
+    <result column="rad" jdbcType="DECIMAL" property="rad" />
+    <result column="len" jdbcType="DECIMAL" property="len" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, name, dia, rad, len, is_del, remark, timestamp
+  </sql>
+  <select id="selectByExample" parameterType="org.zuel.mould.bean.KnifeSpclExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from knife_spcl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from knife_spcl
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from knife_spcl
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.zuel.mould.bean.KnifeSpclExample">
+    delete from knife_spcl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.zuel.mould.bean.KnifeSpcl">
+    insert into knife_spcl (id, code, name, 
+      dia, rad, len, is_del, 
+      remark, timestamp)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{dia,jdbcType=DECIMAL}, #{rad,jdbcType=DECIMAL}, #{len,jdbcType=DECIMAL}, #{isDel,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.zuel.mould.bean.KnifeSpcl">
+    insert into knife_spcl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="dia != null">
+        dia,
+      </if>
+      <if test="rad != null">
+        rad,
+      </if>
+      <if test="len != null">
+        len,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dia != null">
+        #{dia,jdbcType=DECIMAL},
+      </if>
+      <if test="rad != null">
+        #{rad,jdbcType=DECIMAL},
+      </if>
+      <if test="len != null">
+        #{len,jdbcType=DECIMAL},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.zuel.mould.bean.KnifeSpclExample" resultType="java.lang.Long">
+    select count(*) from knife_spcl
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update knife_spcl
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dia != null">
+        dia = #{record.dia,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rad != null">
+        rad = #{record.rad,jdbcType=DECIMAL},
+      </if>
+      <if test="record.len != null">
+        len = #{record.len,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isDel != null">
+        is_del = #{record.isDel,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timestamp != null">
+        timestamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update knife_spcl
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      dia = #{record.dia,jdbcType=DECIMAL},
+      rad = #{record.rad,jdbcType=DECIMAL},
+      len = #{record.len,jdbcType=DECIMAL},
+      is_del = #{record.isDel,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      timestamp = #{record.timestamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zuel.mould.bean.KnifeSpcl">
+    update knife_spcl
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dia != null">
+        dia = #{dia,jdbcType=DECIMAL},
+      </if>
+      <if test="rad != null">
+        rad = #{rad,jdbcType=DECIMAL},
+      </if>
+      <if test="len != null">
+        len = #{len,jdbcType=DECIMAL},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zuel.mould.bean.KnifeSpcl">
+    update knife_spcl
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      dia = #{dia,jdbcType=DECIMAL},
+      rad = #{rad,jdbcType=DECIMAL},
+      len = #{len,jdbcType=DECIMAL},
+      is_del = #{isDel,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
