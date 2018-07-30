@@ -19,7 +19,10 @@ public class JobExecuteService implements IJobExecuteService {
         if(StringUtil.isBlank(ncPathVo.getInputPath()) || StringUtil.isBlank(ncPathVo.getOutputPath())) {
             throw new DefinedException(RespEnum.PATH_ERROR);
         }
+        long beginTime = System.currentTimeMillis();
         new NcJobExecutor().execute(ncPathVo.getInputPath(), ncPathVo.getOutputPath());
+        long endTime = System.currentTimeMillis();
+        System.out.println("NcJob cost: " + (endTime - beginTime));
         return RespUtil.success();
     }
 

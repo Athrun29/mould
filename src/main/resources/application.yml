@@ -6,9 +6,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     # 配置Mysql
-    url: jdbc:mysql://192.168.187.134:3306/zuel
+    url: jdbc:mysql://127.0.0.1:3306/nc_db
     username: root
-    password: 2null9
+    password: athrun29
     driverClassName: com.mysql.jdbc.Driver
     # 初始化大小
     initialSize: 5

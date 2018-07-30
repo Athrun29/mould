@@ -1,6 +1,7 @@
 package org.zuel.mould.handler.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.constant.NcConstant;
 import org.zuel.mould.service.IKnifeToolService;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+@Component
 public class ToolReplaceHandler {
 
     @Autowired
@@ -32,10 +34,12 @@ public class ToolReplaceHandler {
                 BigDecimal dia = BigDecimal.valueOf(Double.valueOf(arrVal[1].split("\\=")[1]));
                 BigDecimal rad = BigDecimal.valueOf(Double.valueOf(arrVal[2].split("\\=")[1]));
                 BigDecimal len = BigDecimal.valueOf(Double.valueOf(arrVal[5].split("\\=")[1].replace(NcConstant.KNIFE_TOOL_END_CHAR, "")));
+
                 if(dia.doubleValue() == 0 && rad.doubleValue() == 0) {
                     writer.write(resultLines.get(i));
                 } else {
                     KnifeGeneral knifeGeneral = knifeToolService.getKnifeGeneralByDiaAndRad(dia, rad);
+                    System.out.println(knifeGeneral);
                     if (knifeGeneral == null) {
                         writer.write(resultLines.get(i));
                     } else {

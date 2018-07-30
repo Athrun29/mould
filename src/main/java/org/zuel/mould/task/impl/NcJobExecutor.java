@@ -6,6 +6,7 @@ import org.zuel.mould.constant.NcConstant;
 import org.zuel.mould.handler.impl.MultiProbFileHandler;
 import org.zuel.mould.handler.impl.SingleProbFileHandler;
 import org.zuel.mould.task.INcJobService;
+import org.zuel.mould.context.SpringBeanProxy;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -74,10 +75,10 @@ public class NcJobExecutor implements INcJobService {
         if(!preExecute(basePath)) {
             throw new RuntimeException("文件目录有误.");
         }
-        executeToolInfo(resultPath);
         prepare(basePath, resultPath);
         executeProb(resultPath);
         executeProcess(resultPath);
+        executeToolInfo(resultPath);
         afterExecute();
     }
 
@@ -134,10 +135,12 @@ public class NcJobExecutor implements INcJobService {
                 }
             }
         });
-        ExecutorService processPool = new ThreadPoolExecutor(1, resultFiles.length, 0L,
+        ExecutorService processPool = new ThreadPoolExecutor(4, resultFiles.length, 0L,
                 TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
         for(File resultFile : resultFiles) {
-            processPool.submit(new NcReplaceToolTask(resultFile.getAbsolutePath()));
+            NcReplaceToolTask ncReplaceToolTask = (NcReplaceToolTask) SpringBeanProxy.getBean("ncReplaceToolTask");
+            ncReplaceToolTask.setResultPath(resultFile.getAbsolutePath());
+            processPool.submit(ncReplaceToolTask);
         }
         processPool.shutdown();
         while(true){

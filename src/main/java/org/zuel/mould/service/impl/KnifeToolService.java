@@ -24,6 +24,7 @@ public class KnifeToolService implements IKnifeToolService {
 
     @Override
     public KnifeGeneral getKnifeGeneralByDiaAndRad(BigDecimal dia, BigDecimal rad) {
+        System.out.println("query dia: " + dia + ", rad: " + rad);
         KnifeGeneralExample knifeGeneralExample = new KnifeGeneralExample();
         knifeGeneralExample.setDistinct(true);
         knifeGeneralExample.createCriteria().andDiaEqualTo(dia).andRadEqualTo(rad);
