@@ -8,14 +8,12 @@ import org.zuel.mould.handler.impl.SingleProbFileHandler;
 import org.zuel.mould.task.INcJobService;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 @Component
 public class NcJobExecutor implements INcJobService {
@@ -37,10 +35,14 @@ public class NcJobExecutor implements INcJobService {
      * 检查目录结构并保存相关文件路径
      * @param basePath
      */
-    private void prepare(String basePath) throws RuntimeException {
+    private void prepare(String basePath, String resultPath) throws RuntimeException {
         File baseDir = new File(basePath);
         if(!baseDir.exists() || !baseDir.isDirectory()) {
             throw new RuntimeException("文件目录不存在.");
+        }
+        File resultDir = new File(resultPath);
+        if(!resultDir.exists()) {
+            resultDir.mkdir();
         }
         processDirPath = new ArrayList<String>();
         probFilePath = new ArrayList<String>();
@@ -68,13 +70,14 @@ public class NcJobExecutor implements INcJobService {
      * @param basePath
      */
     @Override
-    public void execute(String basePath) throws Exception {
+    public void execute(String basePath, String resultPath) throws Exception {
         if(!preExecute(basePath)) {
             throw new RuntimeException("文件目录有误.");
         }
-        prepare(basePath);
-        executeProb(basePath);
-        executeProcess();
+        executeToolInfo(resultPath);
+        prepare(basePath, resultPath);
+        executeProb(resultPath);
+        executeProcess(resultPath);
         afterExecute();
     }
 
@@ -84,23 +87,27 @@ public class NcJobExecutor implements INcJobService {
 
     /**
      * 处理探针程序文件
-     * @param basePath
+     * @param resultPath
      */
-    private void executeProb(String basePath) throws IOException {
+    private void executeProb(String resultPath) throws IOException {
         if(probFilePath.size() == 1) {
-            SingleProbFileHandler.getSingleton().handleProbFile(basePath, probFilePath);
+            SingleProbFileHandler.getSingleton().handleProbFile(resultPath, probFilePath);
         } else if(probFilePath.size() > 1) {
-            MultiProbFileHandler.getSingleton().handleProbFile(basePath, probFilePath);
+            MultiProbFileHandler.getSingleton().handleProbFile(resultPath, probFilePath);
         }
     }
 
     /**
      * 处理加工程序文件
      */
-    private void executeProcess() throws Exception {
-        ExecutorService processPool = new ThreadPoolExecutor(0, processDirPath.size(), 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+    private void executeProcess(String resultPath) throws Exception {
+//        ThreadFactory ncThreadFactory = new ThreadFactoryBuilder().setNameFormat("nc-pool-%d").build();
+//        ExecutorService processPool = new ThreadPoolExecutor(2, processDirPath.size(), 0L,
+//                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), ncThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+        ExecutorService processPool = new ThreadPoolExecutor(2, processDirPath.size(), 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
         for(String processDir : processDirPath) {
-            processPool.submit(new NcProcessFileTask(processDir));
+            processPool.submit(new NcProcessFileTask(processDir, resultPath));
         }
         processPool.shutdown();
         while(true){
@@ -111,4 +118,33 @@ public class NcJobExecutor implements INcJobService {
         }
     }
 
+    /**
+     * 替换处理结果中的刀具信息
+     * @param resultPath
+     */
+    private void executeToolInfo(String resultPath) throws Exception {
+        File[] resultFiles = new File(resultPath).listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if(pathname.isFile() && pathname.getName().startsWith(NcConstant.PROCESS_HANDLE_PREFIX)
+                        && !NcConstant.PROB_HANDLE_RESULT.equals(pathname.getName())) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        ExecutorService processPool = new ThreadPoolExecutor(1, resultFiles.length, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+        for(File resultFile : resultFiles) {
+            processPool.submit(new NcReplaceToolTask(resultFile.getAbsolutePath()));
+        }
+        processPool.shutdown();
+        while(true){
+            if(processPool.isTerminated()){
+                System.out.println("all tool replace has finished.");
+                break;
+            }
+        }
+    }
 }

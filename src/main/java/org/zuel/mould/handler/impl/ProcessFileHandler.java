@@ -18,8 +18,7 @@ public class ProcessFileHandler {
      *
      * @param processDirPath
      */
-    public void handleProcessDir(String processDirPath) throws IOException {
-        String resultDir = getResultDir(processDirPath);
+    public void handleProcessDir(String processDirPath, String resultDir) throws IOException {
         File processDir = new File(processDirPath);
         File[] processFiles = processDir.listFiles();
         String processCode = "-1";

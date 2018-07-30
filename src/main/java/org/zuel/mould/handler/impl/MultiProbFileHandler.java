@@ -30,14 +30,14 @@ public class MultiProbFileHandler implements IProbFileHandler {
 
     /**
      * 多个探针文件合并
-     * @param basePath
+     * @param resultPath
      * @param probFilePath
      * @throws IOException
      */
     @Override
-    public void handleProbFile(String basePath, List<String> probFilePath) throws IOException {
+    public void handleProbFile(String resultPath, List<String> probFilePath) throws IOException {
         List<String> mergeResult = getMergeProbResult(probFilePath);
-        writeProbResult(basePath, mergeResult);
+        writeProbResult(resultPath, mergeResult);
     }
 
     /**
@@ -80,12 +80,12 @@ public class MultiProbFileHandler implements IProbFileHandler {
 
     /**
      * 写入合并结果
-     * @param basePath
+     * @param resultPath
      * @param txtLines
      * @throws IOException
      */
-    private void writeProbResult(String basePath, List<String> txtLines) throws IOException {
-        String probResultPath = basePath + File.separator + NcConstant.PROB_HANDLE_RESULT;
+    private void writeProbResult(String resultPath, List<String> txtLines) throws IOException {
+        String probResultPath = resultPath + File.separator + NcConstant.PROB_HANDLE_RESULT;
         FileUtil.writeResult(probResultPath, txtLines);
     }
 }

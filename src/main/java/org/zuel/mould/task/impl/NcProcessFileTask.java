@@ -9,13 +9,16 @@ import java.io.IOException;
 public class NcProcessFileTask extends NcTaskExecutor {
 
     private boolean runningFlag = false;
-    private String processDirPath;
 
-    public NcProcessFileTask(String processDirPath) throws Exception {
-        if(StringUtil.isBlank(processDirPath)) {
-            throw new Exception("加工文件路径为空, 创建任务失败.");
+    private String processDirPath;
+    private String resultDir;
+
+    public NcProcessFileTask(String processDirPath, String resultDir) throws Exception {
+        if(StringUtil.isBlank(processDirPath) || StringUtil.isBlank(resultDir)) {
+            throw new Exception("文件路径为空, 创建任务失败.");
         }
         this.processDirPath = processDirPath;
+        this.resultDir = resultDir;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class NcProcessFileTask extends NcTaskExecutor {
     @Override
     public void run() {
         try {
-            new ProcessFileHandler().handleProcessDir(processDirPath);
+            new ProcessFileHandler().handleProcessDir(processDirPath, resultDir);
         } catch (IOException e) {
             System.out.println("Handle process files '" + processDirPath + "' failed.");
             e.printStackTrace();

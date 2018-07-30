@@ -93,4 +93,25 @@ public final class NcConstant {
     // 探测加工文件第三段替换目标命令
     public static String DETECT_3RD_REPLACE_TARGET_INS = "G43H00";
 
+    // 刀具头
+    public static String KNIFE_TOOL_INFO_HEAD = "T";
+
+    // 刀具直径
+    public static String KNIFE_TOOL_INFO_DIA = "D.";
+
+    // 刀具半径
+    public static String KNIFE_TOOL_INFO_RAD = "R.";
+
+    // 刀具长度
+    public static String KNIFE_TOOL_INFO_LEN = "MINLEN";
+
+    // 刀具信息起始字符
+    public static String KNIFE_TOOL_START_CHAR = "(";
+
+    // 刀具信息开始标志
+    public static String KNIFE_TOOL_START_TAG = ":";
+
+    // 刀具信息结束字符
+    public static String KNIFE_TOOL_END_CHAR = ")";
+
 }

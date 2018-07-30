@@ -2,8 +2,10 @@ package org.zuel.mould.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class NcPathVo {
+public class NcPathVo implements Serializable {
 
     private String inputPath;
 

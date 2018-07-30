@@ -37,8 +37,8 @@ public class SingleProbFileHandler implements IProbFileHandler {
      * @param probFilePath
      */
     @Override
-    public void handleProbFile(String basePath, List<String> probFilePath) throws IOException {
-        String probResultPath = basePath + File.separator + NcConstant.PROB_HANDLE_RESULT;
+    public void handleProbFile(String resultPath, List<String> probFilePath) throws IOException {
+        String probResultPath = resultPath + File.separator + NcConstant.PROB_HANDLE_RESULT;
         Files.deleteIfExists(Paths.get(probResultPath));
         copyProbFile(probFilePath.get(0), probResultPath);
         appendProbHeader(probResultPath);

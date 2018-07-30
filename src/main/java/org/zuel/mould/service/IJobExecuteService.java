@@ -5,8 +5,8 @@ import org.zuel.mould.vo.NcPathVo;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface INcJobService {
+public interface IJobExecuteService {
 
-    RespMsg handleNcDir(HttpServletRequest request, NcPathVo ncPathVo) throws RuntimeException;
+    RespMsg handleNcDir(NcPathVo ncPathVo) throws Exception;
 
 }
