@@ -5,9 +5,9 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="dia" jdbcType="DECIMAL" property="dia" />
-    <result column="rad" jdbcType="DECIMAL" property="rad" />
-    <result column="len" jdbcType="DECIMAL" property="len" />
+    <result column="dia" jdbcType="DOUBLE" property="dia" />
+    <result column="rad" jdbcType="DOUBLE" property="rad" />
+    <result column="len" jdbcType="DOUBLE" property="len" />
     <result column="is_del" jdbcType="INTEGER" property="isDel" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="timestamp" jdbcType="TIMESTAMP" property="timestamp" />
@@ -103,15 +103,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.zuel.mould.bean.KnifeGeneral">
+  <insert id="insert" parameterType="org.zuel.mould.bean.KnifeGeneral" useGeneratedKeys="true" keyProperty="id">
     insert into knife_general (id, code, name, 
       dia, rad, len, is_del, 
       remark, timestamp)
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{dia,jdbcType=DECIMAL}, #{rad,jdbcType=DECIMAL}, #{len,jdbcType=DECIMAL}, #{isDel,jdbcType=INTEGER}, 
+      #{dia,jdbcType=DOUBLE}, #{rad,jdbcType=DOUBLE}, #{len,jdbcType=DOUBLE}, #{isDel,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.zuel.mould.bean.KnifeGeneral">
+  <insert id="insertSelective" parameterType="org.zuel.mould.bean.KnifeGeneral" useGeneratedKeys="true" keyProperty="id">
     insert into knife_general
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -153,13 +153,13 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="dia != null">
-        #{dia,jdbcType=DECIMAL},
+        #{dia,jdbcType=DOUBLE},
       </if>
       <if test="rad != null">
-        #{rad,jdbcType=DECIMAL},
+        #{rad,jdbcType=DOUBLE},
       </if>
       <if test="len != null">
-        #{len,jdbcType=DECIMAL},
+        #{len,jdbcType=DOUBLE},
       </if>
       <if test="isDel != null">
         #{isDel,jdbcType=INTEGER},
@@ -191,13 +191,13 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.dia != null">
-        dia = #{record.dia,jdbcType=DECIMAL},
+        dia = #{record.dia,jdbcType=DOUBLE},
       </if>
       <if test="record.rad != null">
-        rad = #{record.rad,jdbcType=DECIMAL},
+        rad = #{record.rad,jdbcType=DOUBLE},
       </if>
       <if test="record.len != null">
-        len = #{record.len,jdbcType=DECIMAL},
+        len = #{record.len,jdbcType=DOUBLE},
       </if>
       <if test="record.isDel != null">
         is_del = #{record.isDel,jdbcType=INTEGER},
@@ -218,9 +218,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       code = #{record.code,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      dia = #{record.dia,jdbcType=DECIMAL},
-      rad = #{record.rad,jdbcType=DECIMAL},
-      len = #{record.len,jdbcType=DECIMAL},
+      dia = #{record.dia,jdbcType=DOUBLE},
+      rad = #{record.rad,jdbcType=DOUBLE},
+      len = #{record.len,jdbcType=DOUBLE},
       is_del = #{record.isDel,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       timestamp = #{record.timestamp,jdbcType=TIMESTAMP}
@@ -238,13 +238,13 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="dia != null">
-        dia = #{dia,jdbcType=DECIMAL},
+        dia = #{dia,jdbcType=DOUBLE},
       </if>
       <if test="rad != null">
-        rad = #{rad,jdbcType=DECIMAL},
+        rad = #{rad,jdbcType=DOUBLE},
       </if>
       <if test="len != null">
-        len = #{len,jdbcType=DECIMAL},
+        len = #{len,jdbcType=DOUBLE},
       </if>
       <if test="isDel != null">
         is_del = #{isDel,jdbcType=INTEGER},
@@ -262,9 +262,9 @@
     update knife_general
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
-      dia = #{dia,jdbcType=DECIMAL},
-      rad = #{rad,jdbcType=DECIMAL},
-      len = #{len,jdbcType=DECIMAL},
+      dia = #{dia,jdbcType=DOUBLE},
+      rad = #{rad,jdbcType=DOUBLE},
+      len = #{len,jdbcType=DOUBLE},
       is_del = #{isDel,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       timestamp = #{timestamp,jdbcType=TIMESTAMP}

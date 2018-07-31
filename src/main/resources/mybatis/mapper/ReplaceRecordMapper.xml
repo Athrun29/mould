@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zuel.mould.dao.ReplaceRecordMapper">
+  <resultMap id="BaseResultMap" type="org.zuel.mould.bean.ReplaceRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="src_name" jdbcType="VARCHAR" property="srcName" />
+    <result column="src_dia" jdbcType="DOUBLE" property="srcDia" />
+    <result column="src_rad" jdbcType="DOUBLE" property="srcRad" />
+    <result column="src_len" jdbcType="DOUBLE" property="srcLen" />
+    <result column="tar_name" jdbcType="VARCHAR" property="tarName" />
+    <result column="tar_dia" jdbcType="DOUBLE" property="tarDia" />
+    <result column="tar_rad" jdbcType="DOUBLE" property="tarRad" />
+    <result column="tar_len" jdbcType="DOUBLE" property="tarLen" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, src_name, src_dia, src_rad, src_len, tar_name, tar_dia, tar_rad, tar_len, remark, 
+    create_time
+  </sql>
+  <select id="selectByExample" parameterType="org.zuel.mould.bean.ReplaceRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from replace_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from replace_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from replace_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.zuel.mould.bean.ReplaceRecordExample">
+    delete from replace_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.zuel.mould.bean.ReplaceRecord">
+    insert into replace_record (id, src_name, src_dia, 
+      src_rad, src_len, tar_name, 
+      tar_dia, tar_rad, tar_len, 
+      remark, create_time)
+    values (#{id,jdbcType=BIGINT}, #{srcName,jdbcType=VARCHAR}, #{srcDia,jdbcType=DOUBLE}, 
+      #{srcRad,jdbcType=DOUBLE}, #{srcLen,jdbcType=DOUBLE}, #{tarName,jdbcType=VARCHAR}, 
+      #{tarDia,jdbcType=DOUBLE}, #{tarRad,jdbcType=DOUBLE}, #{tarLen,jdbcType=DOUBLE}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.zuel.mould.bean.ReplaceRecord">
+    insert into replace_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="srcName != null">
+        src_name,
+      </if>
+      <if test="srcDia != null">
+        src_dia,
+      </if>
+      <if test="srcRad != null">
+        src_rad,
+      </if>
+      <if test="srcLen != null">
+        src_len,
+      </if>
+      <if test="tarName != null">
+        tar_name,
+      </if>
+      <if test="tarDia != null">
+        tar_dia,
+      </if>
+      <if test="tarRad != null">
+        tar_rad,
+      </if>
+      <if test="tarLen != null">
+        tar_len,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="srcName != null">
+        #{srcName,jdbcType=VARCHAR},
+      </if>
+      <if test="srcDia != null">
+        #{srcDia,jdbcType=DOUBLE},
+      </if>
+      <if test="srcRad != null">
+        #{srcRad,jdbcType=DOUBLE},
+      </if>
+      <if test="srcLen != null">
+        #{srcLen,jdbcType=DOUBLE},
+      </if>
+      <if test="tarName != null">
+        #{tarName,jdbcType=VARCHAR},
+      </if>
+      <if test="tarDia != null">
+        #{tarDia,jdbcType=DOUBLE},
+      </if>
+      <if test="tarRad != null">
+        #{tarRad,jdbcType=DOUBLE},
+      </if>
+      <if test="tarLen != null">
+        #{tarLen,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.zuel.mould.bean.ReplaceRecordExample" resultType="java.lang.Long">
+    select count(*) from replace_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update replace_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.srcName != null">
+        src_name = #{record.srcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcDia != null">
+        src_dia = #{record.srcDia,jdbcType=DOUBLE},
+      </if>
+      <if test="record.srcRad != null">
+        src_rad = #{record.srcRad,jdbcType=DOUBLE},
+      </if>
+      <if test="record.srcLen != null">
+        src_len = #{record.srcLen,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tarName != null">
+        tar_name = #{record.tarName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tarDia != null">
+        tar_dia = #{record.tarDia,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tarRad != null">
+        tar_rad = #{record.tarRad,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tarLen != null">
+        tar_len = #{record.tarLen,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update replace_record
+    set id = #{record.id,jdbcType=BIGINT},
+      src_name = #{record.srcName,jdbcType=VARCHAR},
+      src_dia = #{record.srcDia,jdbcType=DOUBLE},
+      src_rad = #{record.srcRad,jdbcType=DOUBLE},
+      src_len = #{record.srcLen,jdbcType=DOUBLE},
+      tar_name = #{record.tarName,jdbcType=VARCHAR},
+      tar_dia = #{record.tarDia,jdbcType=DOUBLE},
+      tar_rad = #{record.tarRad,jdbcType=DOUBLE},
+      tar_len = #{record.tarLen,jdbcType=DOUBLE},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zuel.mould.bean.ReplaceRecord">
+    update replace_record
+    <set>
+      <if test="srcName != null">
+        src_name = #{srcName,jdbcType=VARCHAR},
+      </if>
+      <if test="srcDia != null">
+        src_dia = #{srcDia,jdbcType=DOUBLE},
+      </if>
+      <if test="srcRad != null">
+        src_rad = #{srcRad,jdbcType=DOUBLE},
+      </if>
+      <if test="srcLen != null">
+        src_len = #{srcLen,jdbcType=DOUBLE},
+      </if>
+      <if test="tarName != null">
+        tar_name = #{tarName,jdbcType=VARCHAR},
+      </if>
+      <if test="tarDia != null">
+        tar_dia = #{tarDia,jdbcType=DOUBLE},
+      </if>
+      <if test="tarRad != null">
+        tar_rad = #{tarRad,jdbcType=DOUBLE},
+      </if>
+      <if test="tarLen != null">
+        tar_len = #{tarLen,jdbcType=DOUBLE},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zuel.mould.bean.ReplaceRecord">
+    update replace_record
+    set src_name = #{srcName,jdbcType=VARCHAR},
+      src_dia = #{srcDia,jdbcType=DOUBLE},
+      src_rad = #{srcRad,jdbcType=DOUBLE},
+      src_len = #{srcLen,jdbcType=DOUBLE},
+      tar_name = #{tarName,jdbcType=VARCHAR},
+      tar_dia = #{tarDia,jdbcType=DOUBLE},
+      tar_rad = #{tarRad,jdbcType=DOUBLE},
+      tar_len = #{tarLen,jdbcType=DOUBLE},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

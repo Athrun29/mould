@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.bean.KnifeGeneralExample;
-import org.zuel.mould.bean.KnifeSpcl;
-import org.zuel.mould.bean.KnifeSpclExample;
+import org.zuel.mould.bean.ReplaceRecord;
 import org.zuel.mould.dao.KnifeGeneralMapper;
-import org.zuel.mould.dao.KnifeSpclMapper;
+import org.zuel.mould.dao.ReplaceRecordMapper;
 import org.zuel.mould.service.IKnifeToolService;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -20,14 +18,20 @@ public class KnifeToolService implements IKnifeToolService {
     private KnifeGeneralMapper knifeGeneralMapper;
 
     @Autowired
-    private KnifeSpclMapper knifeSpclMapper;
+    private ReplaceRecordMapper replaceRecordMapper;
 
+    /**
+     * 通过名称、直径、半径获取刀具信息
+     * @param name
+     * @param dia
+     * @param rad
+     * @return
+     */
     @Override
-    public KnifeGeneral getKnifeGeneralByDiaAndRad(BigDecimal dia, BigDecimal rad) {
-        System.out.println("query dia: " + dia + ", rad: " + rad);
+    public KnifeGeneral getKnifeGeneralByInfo(String name, Double dia, Double rad) {
         KnifeGeneralExample knifeGeneralExample = new KnifeGeneralExample();
         knifeGeneralExample.setDistinct(true);
-        knifeGeneralExample.createCriteria().andDiaEqualTo(dia).andRadEqualTo(rad);
+        knifeGeneralExample.createCriteria().andNameEqualTo(name.trim().toUpperCase()).andDiaEqualTo(dia).andRadEqualTo(rad);
         List<KnifeGeneral> knifeGeneralList = knifeGeneralMapper.selectByExample(knifeGeneralExample);
         if(knifeGeneralList.size() > 0) {
             return knifeGeneralList.get(0);
@@ -36,21 +40,28 @@ public class KnifeToolService implements IKnifeToolService {
         }
     }
 
+    /**
+     * 获取所有刀具信息
+     * @return
+     */
     @Override
-    public KnifeSpcl getKnifeSpclByDiaAndRad(BigDecimal dia, BigDecimal rad) {
-        KnifeSpclExample knifeSpclExample = new KnifeSpclExample();
-        knifeSpclExample.setDistinct(true);
-        knifeSpclExample.createCriteria().andDiaEqualTo(dia).andRadEqualTo(rad);
-        List<KnifeSpcl> knifeSpclList = knifeSpclMapper.selectByExample(knifeSpclExample);
-        if(knifeSpclList.size() > 0) {
-            return knifeSpclList.get(0);
-        } else {
-            return null;
-        }
+    public List<KnifeGeneral> getAllKnifeGeneral() {
+        KnifeGeneralExample knifeGeneralExample = new KnifeGeneralExample();
+        knifeGeneralExample.setDistinct(true);
+        return knifeGeneralMapper.selectByExample(knifeGeneralExample);
+    }
+
+    /**
+     * 修改刀具
+     * @param knifeGeneral
+     */
+    @Override
+    public void modifyKnifeGeneralInfo(KnifeGeneral knifeGeneral) {
+        knifeGeneralMapper.updateByPrimaryKey(knifeGeneral);
     }
 
     @Override
-    public void addReplaceRecord() {
-
+    public void addReplaceRecord(ReplaceRecord replaceRecord) {
+        replaceRecordMapper.insertSelective(replaceRecord);
     }
 }

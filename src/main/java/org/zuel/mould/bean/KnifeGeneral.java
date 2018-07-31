@@ -2,7 +2,6 @@ package org.zuel.mould.bean;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -13,11 +12,11 @@ public class KnifeGeneral {
 
     private String name;
 
-    private BigDecimal dia;
+    private Double dia;
 
-    private BigDecimal rad;
+    private Double rad;
 
-    private BigDecimal len;
+    private Double len;
 
     private Integer isDel;
 

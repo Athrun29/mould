@@ -3,6 +3,7 @@ package org.zuel.mould.util;
 import org.zuel.mould.constant.NcConstant;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -132,5 +133,48 @@ public class FileUtil {
             }
         }
         System.out.println("Current Thread : " + Thread.currentThread().getName() + " has written probResult...");
+    }
+
+
+    /**
+     * 获取结果目录下所有加工结果文件
+     * @param resultPath
+     * @return
+     */
+    public static File[] getProcessResultFiles(String resultPath) {
+        File[] resultFiles = new File(resultPath).listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                if(pathname.isFile() && pathname.getName().startsWith(NcConstant.PROCESS_HANDLE_PREFIX)
+                        && !NcConstant.PROB_HANDLE_RESULT.equals(pathname.getName())) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        return resultFiles;
+    }
+
+    /**
+     * 默认写入
+     * @param writer
+     * @param txtLine
+     * @throws IOException
+     */
+    public static void writeWithLine(FileWriter writer, String txtLine) throws IOException {
+        writer.write(txtLine);
+        writer.write(System.lineSeparator());
+    }
+
+    /**
+     * 清空文件夹
+     * @param dirPath
+     */
+    public static void clearDir(String dirPath) {
+        File[] files = new File(dirPath).listFiles();
+        for(File file : files) {
+            file.delete();
+        }
     }
 }

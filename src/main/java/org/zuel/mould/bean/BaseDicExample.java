@@ -1,18 +1,16 @@
 package org.zuel.mould.bean;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class KnifeSpclExample {
+public class BaseDicExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public KnifeSpclExample() {
+    public BaseDicExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -306,243 +304,63 @@ public class KnifeSpclExample {
             return (Criteria) this;
         }
 
-        public Criteria andDiaIsNull() {
-            addCriterion("dia is null");
+        public Criteria andParentIsNull() {
+            addCriterion("parent is null");
             return (Criteria) this;
         }
 
-        public Criteria andDiaIsNotNull() {
-            addCriterion("dia is not null");
+        public Criteria andParentIsNotNull() {
+            addCriterion("parent is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDiaEqualTo(BigDecimal value) {
-            addCriterion("dia =", value, "dia");
+        public Criteria andParentEqualTo(Long value) {
+            addCriterion("parent =", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotEqualTo(BigDecimal value) {
-            addCriterion("dia <>", value, "dia");
+        public Criteria andParentNotEqualTo(Long value) {
+            addCriterion("parent <>", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaGreaterThan(BigDecimal value) {
-            addCriterion("dia >", value, "dia");
+        public Criteria andParentGreaterThan(Long value) {
+            addCriterion("parent >", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("dia >=", value, "dia");
+        public Criteria andParentGreaterThanOrEqualTo(Long value) {
+            addCriterion("parent >=", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaLessThan(BigDecimal value) {
-            addCriterion("dia <", value, "dia");
+        public Criteria andParentLessThan(Long value) {
+            addCriterion("parent <", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("dia <=", value, "dia");
+        public Criteria andParentLessThanOrEqualTo(Long value) {
+            addCriterion("parent <=", value, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaIn(List<BigDecimal> values) {
-            addCriterion("dia in", values, "dia");
+        public Criteria andParentIn(List<Long> values) {
+            addCriterion("parent in", values, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotIn(List<BigDecimal> values) {
-            addCriterion("dia not in", values, "dia");
+        public Criteria andParentNotIn(List<Long> values) {
+            addCriterion("parent not in", values, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("dia between", value1, value2, "dia");
+        public Criteria andParentBetween(Long value1, Long value2) {
+            addCriterion("parent between", value1, value2, "parent");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("dia not between", value1, value2, "dia");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadIsNull() {
-            addCriterion("rad is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadIsNotNull() {
-            addCriterion("rad is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadEqualTo(BigDecimal value) {
-            addCriterion("rad =", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadNotEqualTo(BigDecimal value) {
-            addCriterion("rad <>", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadGreaterThan(BigDecimal value) {
-            addCriterion("rad >", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("rad >=", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadLessThan(BigDecimal value) {
-            addCriterion("rad <", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("rad <=", value, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadIn(List<BigDecimal> values) {
-            addCriterion("rad in", values, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadNotIn(List<BigDecimal> values) {
-            addCriterion("rad not in", values, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("rad between", value1, value2, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andRadNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("rad not between", value1, value2, "rad");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenIsNull() {
-            addCriterion("len is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenIsNotNull() {
-            addCriterion("len is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenEqualTo(BigDecimal value) {
-            addCriterion("len =", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenNotEqualTo(BigDecimal value) {
-            addCriterion("len <>", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenGreaterThan(BigDecimal value) {
-            addCriterion("len >", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("len >=", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenLessThan(BigDecimal value) {
-            addCriterion("len <", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("len <=", value, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenIn(List<BigDecimal> values) {
-            addCriterion("len in", values, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenNotIn(List<BigDecimal> values) {
-            addCriterion("len not in", values, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("len between", value1, value2, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andLenNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("len not between", value1, value2, "len");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelIsNull() {
-            addCriterion("is_del is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelIsNotNull() {
-            addCriterion("is_del is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelEqualTo(Integer value) {
-            addCriterion("is_del =", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelNotEqualTo(Integer value) {
-            addCriterion("is_del <>", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelGreaterThan(Integer value) {
-            addCriterion("is_del >", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_del >=", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelLessThan(Integer value) {
-            addCriterion("is_del <", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelLessThanOrEqualTo(Integer value) {
-            addCriterion("is_del <=", value, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelIn(List<Integer> values) {
-            addCriterion("is_del in", values, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelNotIn(List<Integer> values) {
-            addCriterion("is_del not in", values, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelBetween(Integer value1, Integer value2) {
-            addCriterion("is_del between", value1, value2, "isDel");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDelNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_del not between", value1, value2, "isDel");
+        public Criteria andParentNotBetween(Long value1, Long value2) {
+            addCriterion("parent not between", value1, value2, "parent");
             return (Criteria) this;
         }
 
@@ -613,66 +431,6 @@ public class KnifeSpclExample {
 
         public Criteria andRemarkNotBetween(String value1, String value2) {
             addCriterion("remark not between", value1, value2, "remark");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampIsNull() {
-            addCriterion("timestamp is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampIsNotNull() {
-            addCriterion("timestamp is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampEqualTo(Date value) {
-            addCriterion("timestamp =", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampNotEqualTo(Date value) {
-            addCriterion("timestamp <>", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampGreaterThan(Date value) {
-            addCriterion("timestamp >", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampGreaterThanOrEqualTo(Date value) {
-            addCriterion("timestamp >=", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampLessThan(Date value) {
-            addCriterion("timestamp <", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampLessThanOrEqualTo(Date value) {
-            addCriterion("timestamp <=", value, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampIn(List<Date> values) {
-            addCriterion("timestamp in", values, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampNotIn(List<Date> values) {
-            addCriterion("timestamp not in", values, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampBetween(Date value1, Date value2) {
-            addCriterion("timestamp between", value1, value2, "timestamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimestampNotBetween(Date value1, Date value2) {
-            addCriterion("timestamp not between", value1, value2, "timestamp");
             return (Criteria) this;
         }
     }

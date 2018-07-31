@@ -1,6 +1,5 @@
 package org.zuel.mould.bean;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -316,52 +315,52 @@ public class KnifeGeneralExample {
             return (Criteria) this;
         }
 
-        public Criteria andDiaEqualTo(BigDecimal value) {
+        public Criteria andDiaEqualTo(Double value) {
             addCriterion("dia =", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotEqualTo(BigDecimal value) {
+        public Criteria andDiaNotEqualTo(Double value) {
             addCriterion("dia <>", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaGreaterThan(BigDecimal value) {
+        public Criteria andDiaGreaterThan(Double value) {
             addCriterion("dia >", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andDiaGreaterThanOrEqualTo(Double value) {
             addCriterion("dia >=", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaLessThan(BigDecimal value) {
+        public Criteria andDiaLessThan(Double value) {
             addCriterion("dia <", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andDiaLessThanOrEqualTo(Double value) {
             addCriterion("dia <=", value, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaIn(List<BigDecimal> values) {
+        public Criteria andDiaIn(List<Double> values) {
             addCriterion("dia in", values, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotIn(List<BigDecimal> values) {
+        public Criteria andDiaNotIn(List<Double> values) {
             addCriterion("dia not in", values, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andDiaBetween(Double value1, Double value2) {
             addCriterion("dia between", value1, value2, "dia");
             return (Criteria) this;
         }
 
-        public Criteria andDiaNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andDiaNotBetween(Double value1, Double value2) {
             addCriterion("dia not between", value1, value2, "dia");
             return (Criteria) this;
         }
@@ -376,52 +375,52 @@ public class KnifeGeneralExample {
             return (Criteria) this;
         }
 
-        public Criteria andRadEqualTo(BigDecimal value) {
+        public Criteria andRadEqualTo(Double value) {
             addCriterion("rad =", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadNotEqualTo(BigDecimal value) {
+        public Criteria andRadNotEqualTo(Double value) {
             addCriterion("rad <>", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadGreaterThan(BigDecimal value) {
+        public Criteria andRadGreaterThan(Double value) {
             addCriterion("rad >", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andRadGreaterThanOrEqualTo(Double value) {
             addCriterion("rad >=", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadLessThan(BigDecimal value) {
+        public Criteria andRadLessThan(Double value) {
             addCriterion("rad <", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andRadLessThanOrEqualTo(Double value) {
             addCriterion("rad <=", value, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadIn(List<BigDecimal> values) {
+        public Criteria andRadIn(List<Double> values) {
             addCriterion("rad in", values, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadNotIn(List<BigDecimal> values) {
+        public Criteria andRadNotIn(List<Double> values) {
             addCriterion("rad not in", values, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andRadBetween(Double value1, Double value2) {
             addCriterion("rad between", value1, value2, "rad");
             return (Criteria) this;
         }
 
-        public Criteria andRadNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andRadNotBetween(Double value1, Double value2) {
             addCriterion("rad not between", value1, value2, "rad");
             return (Criteria) this;
         }
@@ -436,52 +435,52 @@ public class KnifeGeneralExample {
             return (Criteria) this;
         }
 
-        public Criteria andLenEqualTo(BigDecimal value) {
+        public Criteria andLenEqualTo(Double value) {
             addCriterion("len =", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenNotEqualTo(BigDecimal value) {
+        public Criteria andLenNotEqualTo(Double value) {
             addCriterion("len <>", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenGreaterThan(BigDecimal value) {
+        public Criteria andLenGreaterThan(Double value) {
             addCriterion("len >", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andLenGreaterThanOrEqualTo(Double value) {
             addCriterion("len >=", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenLessThan(BigDecimal value) {
+        public Criteria andLenLessThan(Double value) {
             addCriterion("len <", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andLenLessThanOrEqualTo(Double value) {
             addCriterion("len <=", value, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenIn(List<BigDecimal> values) {
+        public Criteria andLenIn(List<Double> values) {
             addCriterion("len in", values, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenNotIn(List<BigDecimal> values) {
+        public Criteria andLenNotIn(List<Double> values) {
             addCriterion("len not in", values, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLenBetween(Double value1, Double value2) {
             addCriterion("len between", value1, value2, "len");
             return (Criteria) this;
         }
 
-        public Criteria andLenNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andLenNotBetween(Double value1, Double value2) {
             addCriterion("len not between", value1, value2, "len");
             return (Criteria) this;
         }

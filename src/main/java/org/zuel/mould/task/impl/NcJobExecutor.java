@@ -5,14 +5,19 @@ import org.springframework.stereotype.Component;
 import org.zuel.mould.constant.NcConstant;
 import org.zuel.mould.handler.impl.MultiProbFileHandler;
 import org.zuel.mould.handler.impl.SingleProbFileHandler;
+import org.zuel.mould.handler.impl.SingleToolHandler;
 import org.zuel.mould.task.INcJobService;
 import org.zuel.mould.context.SpringBeanProxy;
+import org.zuel.mould.util.FileUtil;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -35,6 +40,8 @@ public class NcJobExecutor implements INcJobService {
     /**
      * 检查目录结构并保存相关文件路径
      * @param basePath
+     * @param resultPath
+     * @throws RuntimeException
      */
     private void prepare(String basePath, String resultPath) throws RuntimeException {
         File baseDir = new File(basePath);
@@ -44,19 +51,20 @@ public class NcJobExecutor implements INcJobService {
         File resultDir = new File(resultPath);
         if(!resultDir.exists()) {
             resultDir.mkdir();
+        } else {
+            FileUtil.clearDir(resultPath);
         }
-        processDirPath = new ArrayList<String>();
-        probFilePath = new ArrayList<String>();
+        processDirPath = new ArrayList<>();
+        probFilePath = new ArrayList<>();
         // 保存文件路径
         File[] baseChildFiles = baseDir.listFiles();
         for(File baseChildFile : baseChildFiles) {
-            if(baseChildFile.isDirectory() && !NcConstant.PROCESS_HANDLE_DIR.equals(baseChildFile.getName())) {
+            if(baseChildFile.isDirectory()) {
                 processDirPath.add(baseChildFile.getAbsolutePath());
                 File[] processFiles = baseChildFile.listFiles();
                 for(File processFile : processFiles) {
                     if(processFile.isFile() && processFile.getName().startsWith(NcConstant.PROB_FILE_NAME_PREFIX)) {
                         probFilePath.add(processFile.getAbsolutePath());
-//                        processDirPath.add(baseChildFile.getAbsolutePath());
                     }
                 }
             }
@@ -69,16 +77,19 @@ public class NcJobExecutor implements INcJobService {
     /**
      * 执行处理
      * @param basePath
+     * @param resultPath
+     * @param curTime
+     * @throws Exception
      */
     @Override
-    public void execute(String basePath, String resultPath) throws Exception {
+    public void execute(String basePath, String resultPath, String curTime) throws Exception {
         if(!preExecute(basePath)) {
             throw new RuntimeException("文件目录有误.");
         }
         prepare(basePath, resultPath);
         executeProb(resultPath);
         executeProcess(resultPath);
-        executeToolInfo(resultPath);
+        executeToolInfo(resultPath, curTime);
         afterExecute();
     }
 
@@ -120,21 +131,11 @@ public class NcJobExecutor implements INcJobService {
     }
 
     /**
-     * 替换处理结果中的刀具信息
+     * 多线程替换处理结果中的刀具信息
      * @param resultPath
      */
-    private void executeToolInfo(String resultPath) throws Exception {
-        File[] resultFiles = new File(resultPath).listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                if(pathname.isFile() && pathname.getName().startsWith(NcConstant.PROCESS_HANDLE_PREFIX)
-                        && !NcConstant.PROB_HANDLE_RESULT.equals(pathname.getName())) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+    private void conCurExecuteToolInfo(String resultPath) throws Exception {
+        File[] resultFiles = FileUtil.getProcessResultFiles(resultPath);
         ExecutorService processPool = new ThreadPoolExecutor(4, resultFiles.length, 0L,
                 TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
         for(File resultFile : resultFiles) {
@@ -150,4 +151,16 @@ public class NcJobExecutor implements INcJobService {
             }
         }
     }
+
+    /**
+     * 单线程处理
+     * @param resultPath
+     * @param curTime
+     * @throws Exception
+     */
+    private void executeToolInfo(String resultPath, String curTime) throws Exception {
+        SingleToolHandler singleToolHandler = (SingleToolHandler) SpringBeanProxy.getBean("singleToolHandler");
+        singleToolHandler.handleToolInfo(resultPath, curTime);
+    }
+
 }

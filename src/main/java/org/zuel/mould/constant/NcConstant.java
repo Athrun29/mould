@@ -2,10 +2,6 @@ package org.zuel.mould.constant;
 
 public final class NcConstant {
 
-    public static String SINGLE_PROB_FILE = "SingleProbFile";
-
-    public static String MULTI_PROB_FILES = "MultiProbFiles";
-
     // 探针文件生成结果
     public static String PROB_HANDLE_RESULT = "O8800";
 
@@ -46,7 +42,7 @@ public final class NcConstant {
     public static String PROCESS_DETECT_TAG = "#1";
 
     // 加工文件生成目录
-    public static String PROCESS_HANDLE_DIR = "处理后";
+    public static String PROCESS_HANDLE_DIR = "result";
 
     // 探测加工文件第一段处理标识
     public static String DETECT_1TH_TAG = "1th";
@@ -113,5 +109,44 @@ public final class NcConstant {
 
     // 刀具信息结束字符
     public static String KNIFE_TOOL_END_CHAR = ")";
+
+    // 刀具信息间隔行数
+    public static int KNIFE_TOOL_LINE_INTERVAL = 5;
+
+    // 刀具信息占位编号
+    public static String KNIFE_TOOL_OCCUPY_CODE = "00";
+
+    // 刀具信息修改字符 H
+    public static String KNIFE_TOOL_OCCPY_CHAR_H = "H";
+
+    // 刀具信息修改字符 D
+    public static String KNIFE_TOOL_OCCPY_CHAR_D = "D";
+
+    // 探针刀具名称
+    public static String KNIFE_TOOL_PROB_NAME = "TANZHEN";
+
+    // 刀具信息最大数量
+    public static int KNIFE_TOOL_MAX_NUM = 24;
+
+    // 刀具处理日志前缀
+    public static String NC_ERROR_LOG_PREFIX = "err_log_";
+
+    // 刀具处理日志前缀
+    public static String NC_ERROR_LOG_POSTFIX = ".txt";
+
+    // 刀具处理日志分割线
+    public static String NC_ERROR_LOG_LINE_SEPARATOR = "------------------------";
+
+    // 时间格式化紧凑格式
+    public static String DATE_FORMAT_MINI = "yyyyMMddHHmmss";
+
+    // 钻刀父id
+    public static long GLASS_CUTTER_ROOT_ID = 1;
+
+    // 刀具特殊名称标志
+    public static String KNIFE_TOOL_SPCL_NAME_TAG = "_";
+
+    // 刀具名称长度标志
+    public static String KNIFE_TOOL_NAME_LENGTH_TAG = "L";
 
 }

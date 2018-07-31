@@ -1,15 +1,17 @@
 package org.zuel.mould.service;
 
 import org.zuel.mould.bean.KnifeGeneral;
-import org.zuel.mould.bean.KnifeSpcl;
+import org.zuel.mould.bean.ReplaceRecord;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 public interface IKnifeToolService {
 
-    KnifeGeneral getKnifeGeneralByDiaAndRad(BigDecimal dia, BigDecimal rad);
+    KnifeGeneral getKnifeGeneralByInfo(String name, Double dia, Double rad);
 
-    KnifeSpcl getKnifeSpclByDiaAndRad(BigDecimal dia, BigDecimal rad);
+    List<KnifeGeneral> getAllKnifeGeneral();
 
-    void addReplaceRecord();
+    void modifyKnifeGeneralInfo(KnifeGeneral knifeGeneral);
+
+    void addReplaceRecord(ReplaceRecord replaceRecord);
 }
