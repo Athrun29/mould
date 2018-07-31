@@ -176,7 +176,6 @@ public class SingleToolHandler {
                         String toolName = arrVal[0].split("\\" + NcConstant.KNIFE_TOOL_START_TAG)[1];
                         BigDecimal toolDia = BigDecimal.valueOf(Double.valueOf(arrVal[1].split("\\=")[1]));
                         BigDecimal toolRad = BigDecimal.valueOf(Double.valueOf(arrVal[2].split("\\=")[1]));
-                        BigDecimal toolLen = BigDecimal.valueOf(Double.valueOf(arrVal[5].split("\\=")[1].replace(NcConstant.KNIFE_TOOL_END_CHAR, "")));
                         if (toolDia.doubleValue() == 0 && toolRad.doubleValue() == 0) {
                             FileUtil.writeWithLine(writer, resultLines.get(i));
                         } else {
