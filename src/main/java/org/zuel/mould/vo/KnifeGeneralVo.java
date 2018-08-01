@@ -1,11 +1,9 @@
-package org.zuel.mould.bean;
+package org.zuel.mould.vo;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
-public class KnifeGeneral {
+public class KnifeGeneralVo {
 
     private Long id;
 
@@ -19,9 +17,5 @@ public class KnifeGeneral {
 
     private Double len;
 
-    private Integer isDel;
-
     private String remark;
-
-    private Date timestamp;
 }

@@ -8,6 +8,7 @@ import org.zuel.mould.bean.ReplaceRecord;
 import org.zuel.mould.constant.NcConstant;
 import org.zuel.mould.service.IDicDataService;
 import org.zuel.mould.service.IKnifeToolService;
+import org.zuel.mould.service.IReplaceRecordService;
 import org.zuel.mould.util.FileUtil;
 
 import java.io.File;
@@ -25,6 +26,9 @@ public class SingleToolHandler {
 
     @Autowired
     IKnifeToolService knifeToolService;
+
+    @Autowired
+    IReplaceRecordService replaceRecordService;
 
     @Autowired
     IDicDataService dicDataService;
@@ -285,7 +289,7 @@ public class SingleToolHandler {
         replaceRecord.setRemark(avlTool.getRemark());
         replaceRecord.setCreateTime(new Date());
 //        System.out.println("Replace record: " + replaceRecord);
-        knifeToolService.addReplaceRecord(replaceRecord);
+        replaceRecordService.addReplaceRecord(replaceRecord);
     }
 
     /**

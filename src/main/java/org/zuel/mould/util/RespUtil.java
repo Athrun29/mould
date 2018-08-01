@@ -1,8 +1,28 @@
 package org.zuel.mould.util;
 
+import com.github.pagehelper.Page;
 import org.zuel.mould.constant.RespEnum;
 
 public class RespUtil {
+
+    public static BasePager getPager(Page page) {
+        BasePager pager = new BasePager();
+        pager.setPageNum(page.getPageNum());
+        pager.setPageSize(page.getPageSize());
+        pager.setTotalNum(page.getTotal());
+        return pager;
+    }
+
+    public static RespMsg success(Page page, Object object) {
+        return success(getPager(page), object);
+    }
+
+    public static RespMsg success(BasePager pager, Object object) {
+        RespPager respPager = new RespPager();
+        respPager.setPager(pager);
+        respPager.setDatas(object);
+        return success(respPager);
+    }
 
     public static RespMsg success(){
         return success(null);

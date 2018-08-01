@@ -43,3 +43,10 @@ mybatis:
   type-aliases-package: org.zuel.mould.bean
   configuration:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# PageHelper
+pagehelper:
+  helperDialect: mysql
+  offsetAsPageNum: true
+  rowBoundsWithCount: true
+  reasonable: true

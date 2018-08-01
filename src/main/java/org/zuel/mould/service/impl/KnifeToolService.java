@@ -1,13 +1,17 @@
 package org.zuel.mould.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.bean.KnifeGeneralExample;
-import org.zuel.mould.bean.ReplaceRecord;
 import org.zuel.mould.dao.KnifeGeneralMapper;
 import org.zuel.mould.dao.ReplaceRecordMapper;
 import org.zuel.mould.service.IKnifeToolService;
+import org.zuel.mould.util.ReqPager;
+import org.zuel.mould.util.RespMsg;
+import org.zuel.mould.vo.KnifeGeneralVo;
 
 import java.util.List;
 
@@ -48,7 +52,8 @@ public class KnifeToolService implements IKnifeToolService {
     public List<KnifeGeneral> getAllKnifeGeneral() {
         KnifeGeneralExample knifeGeneralExample = new KnifeGeneralExample();
         knifeGeneralExample.setDistinct(true);
-        return knifeGeneralMapper.selectByExample(knifeGeneralExample);
+        List<KnifeGeneral> models = knifeGeneralMapper.selectByExample(knifeGeneralExample);
+        return models;
     }
 
     /**
@@ -61,7 +66,22 @@ public class KnifeToolService implements IKnifeToolService {
     }
 
     @Override
-    public void addReplaceRecord(ReplaceRecord replaceRecord) {
-        replaceRecordMapper.insertSelective(replaceRecord);
+    public RespMsg getQueryList(ReqPager reqPager) {
+        return null;
+    }
+
+    @Override
+    public RespMsg getModel(Long id) {
+        return null;
+    }
+
+    @Override
+    public RespMsg saveModel(KnifeGeneral model) {
+        return null;
+    }
+
+    @Override
+    public RespMsg delModel(List<Long> models) {
+        return null;
     }
 }
