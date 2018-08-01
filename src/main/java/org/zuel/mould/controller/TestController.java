@@ -1,9 +1,7 @@
 package org.zuel.mould.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.zuel.mould.bean.BaseDic;
 import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.constant.NcConstant;
@@ -67,6 +65,15 @@ public class TestController {
         queryModel.setParent(NcConstant.GLASS_CUTTER_ROOT_ID);
         reqPager.setQueryModel(queryModel);
         return dicDataService.getGlassCutterQueryList(reqPager);
+    }
+
+    @RequestMapping(value = "/param", method = RequestMethod.GET)
+    public RespMsg param(@RequestParam("input") String inputPath, @RequestParam("output") String outputPath) throws Exception {
+        System.out.println(inputPath + ", " + outputPath);
+        NcPathVo ncPathVo = new NcPathVo();
+        ncPathVo.setInputPath(inputPath);
+        ncPathVo.setOutputPath(outputPath);
+        return jobExecuteService.handleNcDir(ncPathVo);
     }
 
 }
