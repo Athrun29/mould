@@ -9,7 +9,6 @@ import org.zuel.mould.util.FileUtil;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -35,7 +34,6 @@ public class ToolReplaceHandler {
                     String toolName = arrVal[0].split("\\" + NcConstant.KNIFE_TOOL_START_TAG)[1];
                     Double toolDia = Double.valueOf(arrVal[1].split("\\=")[1]);
                     Double toolRad = Double.valueOf(arrVal[2].split("\\=")[1]);
-                    Double toolLen = Double.valueOf(arrVal[5].split("\\=")[1].replace(NcConstant.KNIFE_TOOL_END_CHAR, ""));
 
                     if (toolDia.doubleValue() == 0 && toolRad.doubleValue() == 0) {
                         FileUtil.writeWithLine(writer, resultLines.get(i));
@@ -50,11 +48,11 @@ public class ToolReplaceHandler {
                             writer.write(resultLines.get(i).replace(replaceStr, NcConstant.KNIFE_TOOL_INFO_HEAD + knifeGeneral.getCode()));
                             writer.write(System.lineSeparator());
                             // 默认写入中间行
-                            for(int j = i + 1; j < i + NcConstant.KNIFE_TOOL_LINE_INTERVAL; ++j) {
+                            for(int j = i + 1; j < i + NcConstant.KNIFE_TOOL_HEAD_INTERVAL; ++j) {
                                 FileUtil.writeWithLine(writer, resultLines.get(j));
                             }
                             FileUtil.writeWithLine(writer, NcConstant.KNIFE_TOOL_INFO_HEAD + knifeGeneral.getCode());
-                            i += NcConstant.KNIFE_TOOL_LINE_INTERVAL;
+                            i += NcConstant.KNIFE_TOOL_HEAD_INTERVAL;
                         }
                     }
                 } else {

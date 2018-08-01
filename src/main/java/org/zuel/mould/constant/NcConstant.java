@@ -110,8 +110,17 @@ public final class NcConstant {
     // 刀具信息结束字符
     public static String KNIFE_TOOL_END_CHAR = ")";
 
-    // 刀具信息间隔行数
-    public static int KNIFE_TOOL_LINE_INTERVAL = 5;
+    // 刀具信息与编号间隔行数
+    public static int KNIFE_TOOL_HEAD_INTERVAL = 5;
+
+    // 刀具编号与尾部间隔行数
+    public static int KNIFE_TOOL_TAIL_INTERVAL = 8;
+
+    // 刀具尾部标志
+    public static String KNIFE_TOOL_TAIL_TAG = "G43H00";
+
+    // 刀具尾部内容
+    public static String KNIFE_TOOL_TAIL_STR = "G41D";
 
     // 刀具信息占位编号
     public static String KNIFE_TOOL_OCCUPY_CODE = "00";

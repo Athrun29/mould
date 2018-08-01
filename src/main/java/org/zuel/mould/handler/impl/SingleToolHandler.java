@@ -181,12 +181,25 @@ public class SingleToolHandler {
                         } else {
                             String toolKey = toolName + "^" + toolDia + "^" + toolRad;
                             replaceToolLine(writer, resultLines.get(i), toolKey, curTime);
-                            // 默认写入中间行
-                            for(int j = i + 1; j < i + NcConstant.KNIFE_TOOL_LINE_INTERVAL; ++j) {
+                            // 写入刀具信息行与编号之间的内容
+                            for(int j = i + 1; j < i + NcConstant.KNIFE_TOOL_HEAD_INTERVAL; ++j) {
                                 FileUtil.writeWithLine(writer, resultLines.get(j));
                             }
                             FileUtil.writeWithLine(writer, NcConstant.KNIFE_TOOL_INFO_HEAD + usedTools.get(toolKey).getCode());
-                            i += NcConstant.KNIFE_TOOL_LINE_INTERVAL;
+                            i += NcConstant.KNIFE_TOOL_HEAD_INTERVAL;
+                            // 继续写入直到刀具信息尾
+                            for(int k = i + 1; k < i + NcConstant.KNIFE_TOOL_TAIL_INTERVAL; ++k, ++i) {
+                                if(resultLines.get(k).contains(NcConstant.KNIFE_TOOL_TAIL_TAG)) {
+                                    String toolCode = usedTools.get(toolKey).getCode().length() == 1 ? "0" + usedTools.get(toolKey).getCode() : usedTools.get(toolKey).getCode();
+                                    FileUtil.writeWithLine(writer, resultLines.get(k)
+                                            .replace(NcConstant.KNIFE_TOOL_OCCPY_CHAR_H + NcConstant.KNIFE_TOOL_OCCUPY_CODE, NcConstant.KNIFE_TOOL_OCCPY_CHAR_H + toolCode));
+                                    FileUtil.writeWithLine(writer, NcConstant.KNIFE_TOOL_TAIL_STR + toolCode);
+                                    break;
+                                } else {
+                                    FileUtil.writeWithLine(writer, resultLines.get(k));
+                                }
+                            }
+                            ++i;
                         }
                     } else {
                         FileUtil.writeWithLine(writer, resultLines.get(i));

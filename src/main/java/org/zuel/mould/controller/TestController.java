@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.context.SpringBeanProxy;
 import org.zuel.mould.handler.impl.SingleToolHandler;
 import org.zuel.mould.service.IJobExecuteService;
