@@ -76,7 +76,7 @@
 #### 1.1 钻刀前缀列表  
 
 ```
-url: /dic/glassCutter/list
+url: /app/dic/glassCutter/list
 method: POST
 param: json
 {
@@ -116,7 +116,7 @@ return: json
 #### 1.2 钻刀前缀详情
 
 ```
-url: /dic/glassCutter/get/{id}
+url: /app/dic/glassCutter/get/{id}
 method: GET
 param: 刀具前缀信息id
 return: json
@@ -136,7 +136,7 @@ return: json
 #### 1.3 编辑钻刀前缀
 
 ```
-url: /dic/glassCutter/save
+url: /app/dic/glassCutter/save
 method: POST
 param: json
 {
@@ -162,7 +162,7 @@ return: json
 #### 1.4 删除钻刀前缀
 
 ```
-url: /dic/glassCutter/del
+url: /app/dic/glassCutter/del
 method: POST
 param: json
 [
@@ -184,7 +184,7 @@ return: json
 #### 2.1 刀具信息列表
 
 ```
-url: /cutter/list
+url: /app/cutter/list
 method: POST
 param: json
 {
@@ -226,7 +226,7 @@ return: json
 #### 2.2 刀具信息详情
 
 ```
-url: /cutter/get/{id}
+url: /app/cutter/get/{id}
 method: GET
 param: 刀具信息id
 return: json
@@ -248,7 +248,7 @@ return: json
 #### 2.3 编辑刀具信息
 
 ```
-url: /cutter/save
+url: /app/cutter/save
 method: POST
 param: json
 {
@@ -279,7 +279,7 @@ return: json
 #### 2.4 删除刀具信息
 
 ```
-url: /cutter/del
+url: /app/cutter/del
 method: POST
 param: json
 [
@@ -301,7 +301,7 @@ return: json
 #### 3.1 替换记录列表
 
 ```
-url: /cutter/list
+url: /app/cutter/list
 method: POST
 param: json
 {
@@ -343,4 +343,24 @@ return: json
         ]
     }
 }           
+```
+### 4. 文件处理
+
+#### 1.1 nc文件处理
+
+```
+url: /app/job/ncJob
+method: POST
+param: json
+{
+    input: '输入路径', 
+    output: '输出路径'
+}
+return: json
+{
+    code: 200, 
+    success: 1, 
+    msg: '结果信息', 
+    data: null
+} 
 ```
