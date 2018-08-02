@@ -22,6 +22,7 @@
         |-- 编辑刀具信息
         |-- 删除刀具
     |-- 文件处理
+    |-- 刀具替换记录查询
 ```
 ***************
 
@@ -301,7 +302,7 @@ return: json
 #### 3.1 替换记录列表
 
 ```
-url: /app/cutter/list
+url: /app/record/list
 method: POST
 param: json
 {
