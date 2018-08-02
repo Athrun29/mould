@@ -3,10 +3,7 @@ package org.zuel.mould.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.zuel.mould.bean.BaseDic;
-import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.constant.NcConstant;
-import org.zuel.mould.context.SpringBeanProxy;
-import org.zuel.mould.handler.impl.SingleToolHandler;
 import org.zuel.mould.service.IDicDataService;
 import org.zuel.mould.service.IJobExecuteService;
 import org.zuel.mould.service.IKnifeToolService;
@@ -20,7 +17,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/app/test")
 public class TestController {
 
     @Autowired

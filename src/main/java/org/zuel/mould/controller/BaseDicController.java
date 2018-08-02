@@ -13,7 +13,7 @@ import org.zuel.mould.util.RespMsg;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/dic")
+@RequestMapping(value = "/app/dic")
 public class BaseDicController {
 
     @Autowired

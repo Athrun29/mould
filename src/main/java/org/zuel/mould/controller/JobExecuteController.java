@@ -8,7 +8,7 @@ import org.zuel.mould.util.RespMsg;
 import org.zuel.mould.vo.NcPathVo;
 
 @RestController
-@RequestMapping(value = "/jobExecute")
+@RequestMapping(value = "/app/jobExecute")
 public class JobExecuteController {
 
     @Autowired

@@ -85,6 +85,9 @@ public class KnifeToolService implements IKnifeToolService {
 
     @Override
     public RespMsg saveModel(KnifeGeneral model) {
+        if(!StringUtil.isBlank(model.getName())) {
+            model.setName(model.getName().trim().toUpperCase());
+        }
         if(model.getId() == null) {
             knifeGeneralMapper.insertSelective(model);
         } else {
@@ -119,9 +122,6 @@ public class KnifeToolService implements IKnifeToolService {
         KnifeGeneralExample example = new KnifeGeneralExample();
         example.setDistinct(true);
         KnifeGeneralExample.Criteria criteria = example.createCriteria();
-        if(queryModel.getId() != null) {
-            criteria.andIdEqualTo(queryModel.getId());
-        }
         if(!StringUtil.isBlank(queryModel.getCode())) {
             criteria.andCodeLike(queryModel.getCode());
         }

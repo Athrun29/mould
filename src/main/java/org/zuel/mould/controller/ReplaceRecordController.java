@@ -13,7 +13,7 @@ import org.zuel.mould.util.RespMsg;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/record")
+@RequestMapping(value = "/app/record")
 public class ReplaceRecordController {
 
     @Autowired

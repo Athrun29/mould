@@ -51,6 +51,9 @@ public class DicDataService implements IDicDataService {
     @Override
     public RespMsg saveGlassCutterModel(BaseDic model) throws RuntimeException {
         model.setParent(NcConstant.GLASS_CUTTER_ROOT_ID);
+        if(!StringUtil.isBlank(model.getName())) {
+            model.setName(model.getName().trim().toUpperCase());
+        }
         if(model.getId() == null) {
             baseDicMapper.insertSelective(model);
         } else {

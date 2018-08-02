@@ -10,7 +10,7 @@ import org.zuel.mould.util.RespMsg;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/cutter")
+@RequestMapping(value = "/app/cutter")
 public class CutterController {
 
     @Autowired

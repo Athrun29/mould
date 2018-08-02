@@ -46,6 +46,12 @@ public class ReplaceRecordService implements IReplaceRecordService {
 
     @Override
     public RespMsg saveModel(ReplaceRecord model) {
+        if(!StringUtil.isBlank(model.getSrcName())) {
+            model.setSrcName(model.getSrcName().trim().toUpperCase());
+        }
+        if(!StringUtil.isBlank(model.getTarName())) {
+            model.setTarName(model.getTarName().trim().toUpperCase());
+        }
         if(model.getId() == null) {
             model.setCreateTime(new Date());
             replaceRecordMapper.insertSelective(model);
@@ -78,7 +84,7 @@ public class ReplaceRecordService implements IReplaceRecordService {
         vo.setTarRad(model.getTarRad());
         vo.setTarLen(model.getTarLen());
         vo.setRemark(model.getRemark());
-        vo.setCreateTime(DateUtil.getDateStrMini(model.getCreateTime()));
+        vo.setCreateTime(DateUtil.getDateStrStandard(model.getCreateTime()));
         return vo;
     }
 
