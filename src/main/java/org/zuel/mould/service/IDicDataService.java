@@ -3,7 +3,6 @@ package org.zuel.mould.service;
 import org.zuel.mould.bean.BaseDic;
 import org.zuel.mould.util.ReqPager;
 import org.zuel.mould.util.RespMsg;
-import org.zuel.mould.vo.BaseDicVo;
 
 import java.util.List;
 

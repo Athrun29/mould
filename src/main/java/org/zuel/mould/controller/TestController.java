@@ -41,12 +41,6 @@ public class TestController {
         return RespUtil.success(returnPahtVo);
     }
 
-    @RequestMapping(value = "/toolLog")
-    public void toolLog() throws Exception {
-        SingleToolHandler singleToolHandler = (SingleToolHandler) SpringBeanProxy.getBean("singleToolHandler");
-        singleToolHandler.printErrLog("/Users/athrun/Work/Docs/mould/result");
-    }
-
     @RequestMapping(value = "/ncJob")
     public RespMsg handleNcDir() throws Exception {
         NcPathVo ncPathVo = new NcPathVo();

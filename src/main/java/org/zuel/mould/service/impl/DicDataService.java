@@ -99,7 +99,7 @@ public class DicDataService implements IDicDataService {
             criteria.andCodeLike(queryModel.getCode());
         }
         if(!StringUtil.isBlank(queryModel.getName())) {
-            criteria.andNameLike(queryModel.getName());
+            criteria.andNameLike(queryModel.getName().trim().toUpperCase());
         }
         if(queryModel.getParent() != null) {
             criteria.andParentEqualTo(queryModel.getParent());

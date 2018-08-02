@@ -16,5 +16,5 @@ public interface IReplaceRecordService {
 
     RespMsg saveModel(ReplaceRecord model);
 
-    void delModel(List<Long> models);
+    RespMsg delModel(List<Long> models);
 }

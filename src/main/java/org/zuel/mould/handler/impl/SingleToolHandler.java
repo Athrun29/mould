@@ -332,7 +332,7 @@ public class SingleToolHandler {
      * @param resultPath
      * @throws IOException
      */
-    public void printErrLog(String resultPath) throws IOException {
+    private void printErrLog(String resultPath) throws IOException {
         DateFormat dateFormat = new SimpleDateFormat(NcConstant.DATE_FORMAT_MINI);
         String curTime = dateFormat.format(new Date());
         String logPath = resultPath + File.separator + NcConstant.NC_ERROR_LOG_PREFIX + curTime + NcConstant.NC_ERROR_LOG_POSTFIX;

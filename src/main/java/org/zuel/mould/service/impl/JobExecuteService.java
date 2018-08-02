@@ -27,7 +27,7 @@ public class JobExecuteService implements IJobExecuteService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public RespMsg handleNcDir(NcPathVo ncPathVo) throws Exception {
+    public RespMsg handleNcDir(NcPathVo ncPathVo) {
         DateFormat dateFormat = new SimpleDateFormat(NcConstant.DATE_FORMAT_MINI);
         String curTime = dateFormat.format(new Date());
         String resultPath = ncPathVo.getOutputPath() + File.separator + NcConstant.PROCESS_HANDLE_DIR + "_" + curTime;
@@ -47,7 +47,7 @@ public class JobExecuteService implements IJobExecuteService {
             } catch(IOException ioe) {
 
             }
-            throw e;
+            return RespUtil.error(0, e.getMessage());
         }
     }
 }
