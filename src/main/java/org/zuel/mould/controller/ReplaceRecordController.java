@@ -20,7 +20,7 @@ public class ReplaceRecordController {
     private IReplaceRecordService replaceRecordService;
 
     @RequestMapping(value = "/list")
-    public RespMsg getQueryList(@RequestBody ReqPager reqPager) {
+    public RespMsg getQueryList(@RequestBody ReqPager<ReplaceRecord> reqPager) {
         return replaceRecordService.getQueryList(reqPager);
     }
 

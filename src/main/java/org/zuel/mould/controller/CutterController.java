@@ -17,7 +17,7 @@ public class CutterController {
     private KnifeToolService knifeToolService;
 
     @RequestMapping(value = "/list")
-    public RespMsg getQueryList(@RequestBody ReqPager reqPager) {
+    public RespMsg getQueryList(@RequestBody ReqPager<KnifeGeneral> reqPager) {
         return knifeToolService.getQueryList(reqPager);
     }
 

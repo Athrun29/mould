@@ -20,7 +20,7 @@ public class BaseDicController {
     IDicDataService dicDataService;
 
     @RequestMapping(value = "/glassCutter/list")
-    public RespMsg getQueryList(@RequestBody ReqPager reqPager) {
+    public RespMsg getQueryList(@RequestBody ReqPager<BaseDic> reqPager) {
         return dicDataService.getGlassCutterQueryList(reqPager);
     }
 
