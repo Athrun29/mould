@@ -67,8 +67,11 @@ public class KnifeToolService implements IKnifeToolService {
 
     @Override
     public RespMsg getQueryList(ReqPager reqPager) {
+        Page page = null;
         KnifeGeneral queryModel = (KnifeGeneral) reqPager.getQueryModel();
-        Page page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        if(reqPager.getPager() != null) {
+            page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        }
         List<KnifeGeneral> models = knifeGeneralMapper.selectByExample(createQueryCondition(queryModel));
         List<KnifeGeneralVo> vos = new ArrayList<>();
         for(KnifeGeneral model : models) {

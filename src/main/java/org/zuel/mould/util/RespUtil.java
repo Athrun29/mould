@@ -14,7 +14,11 @@ public class RespUtil {
     }
 
     public static RespMsg success(Page page, Object object) {
-        return success(getPager(page), object);
+        if(page == null) {
+            return success(object);
+        } else {
+            return success(getPager(page), object);
+        }
     }
 
     public static RespMsg success(BasePager pager, Object object) {

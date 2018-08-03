@@ -31,9 +31,12 @@ public class DicDataService implements IDicDataService {
 
     @Override
     public RespMsg getGlassCutterQueryList(ReqPager reqPager) throws RuntimeException {
+        Page page = null;
         BaseDic queryModel = (BaseDic) reqPager.getQueryModel();
         queryModel.setParent(NcConstant.GLASS_CUTTER_ROOT_ID);
-        Page page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        if(reqPager.getPager() != null) {
+            page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        }
         List<BaseDic> models = baseDicMapper.selectByExample(createQueryCondition(queryModel));
         List<BaseDicVo> vos = new ArrayList<>();
         for(BaseDic model : models) {

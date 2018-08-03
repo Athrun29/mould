@@ -28,8 +28,11 @@ public class ReplaceRecordService implements IReplaceRecordService {
 
     @Override
     public RespMsg getQueryList(ReqPager reqPager) {
+        Page page = null;
         ReplaceRecord queryModel = (ReplaceRecord) reqPager.getQueryModel();
-        Page page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        if(reqPager.getPager() != null) {
+            page = PageHelper.startPage(reqPager.getPager().getPageNum(), reqPager.getPager().getPageSize());
+        }
         List<ReplaceRecord> models = replaceRecordMapper.selectByExample(createQueryCondition(queryModel));
         List<ReplaceRecordVo> vos = new ArrayList<>();
         for(ReplaceRecord model : models) {
