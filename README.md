@@ -10,7 +10,7 @@
 
 ## 功能设计
 ```
--- 功能
+|-- 功能
     |-- 钻刀前缀维护
         |-- 钻刀前缀列表
         |-- 钻刀前缀详情
@@ -166,11 +166,7 @@ return: json
 url: /app/dic/glassCutter/del
 method: POST
 param: json
-[
-    {
-        id: 0
-    }
-]
+[id1, id2]
 return: json
 {
     code: 200, 
@@ -283,11 +279,7 @@ return: json
 url: /app/cutter/del
 method: POST
 param: json
-[
-    {
-        id: 0
-    }
-]
+[id1, id2]
 return: json
 {
     code: 200, 
