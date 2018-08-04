@@ -336,8 +336,9 @@ return: json
                 tarDia: 0.0,  // 新直径
                 tarRad: 0.0,  // 新半径
                 tarLen: 0.0,  // 新长度
-                remark: '备注', 
-                createTimeStr: '创建时间' 
+                remark: '备注', , 
+                createTime: '创建时间' 
+                createTimeStr: '创建时间字符串' 
             }
         ]
     }
