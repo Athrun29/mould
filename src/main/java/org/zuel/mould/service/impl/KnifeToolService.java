@@ -90,6 +90,7 @@ public class KnifeToolService implements IKnifeToolService {
             model.setName(model.getName().trim().toUpperCase());
         }
         model.setTimestamp(new Date());
+        model.setIsDel(0);
         if(model.getId() == null) {
             knifeGeneralMapper.insertSelective(model);
         } else {

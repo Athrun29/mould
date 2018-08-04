@@ -259,8 +259,7 @@ param: json
     dia: 0.0,  // 直径
     rad: 0.0,  // 半径
     len: 0.0,  // 长度
-    remark: '', 
-    is_del: 0
+    remark: ''
 }
 return: json
 {
