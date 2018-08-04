@@ -214,7 +214,9 @@ return: json
                 dia: 0.0,  // 直径
                 rad: 0.0,  // 半径
                 len: 0.0,  // 长度
-                remark: '备注'
+                remark: '备注', 
+                is_del: 0, 
+                timestamp: '时间戳'
             }
         ]
     }
@@ -238,7 +240,9 @@ return: json
         dia: 0.0,  // 直径
         rad: 0.0,  // 半径
         len: 0.0,  // 长度
-        remark: '备注'
+        remark: '备注', 
+        is_del: 0, 
+        timestamp: '时间戳'
     }
 } 
 ```
@@ -255,7 +259,8 @@ param: json
     dia: 0.0,  // 直径
     rad: 0.0,  // 半径
     len: 0.0,  // 长度
-    remark: ''
+    remark: '', 
+    is_del: 0
 }
 return: json
 {
@@ -269,7 +274,9 @@ return: json
         dia: 0.0,  // 直径
         rad: 0.0,  // 半径
         len: 0.0,  // 长度
-        remark: '备注'
+        remark: '备注', 
+        is_del: 0, 
+        timestamp: '时间戳'
     }
 } 
 ```

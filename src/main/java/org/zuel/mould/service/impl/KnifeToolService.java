@@ -12,6 +12,7 @@ import org.zuel.mould.util.*;
 import org.zuel.mould.vo.KnifeGeneralVo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -88,6 +89,7 @@ public class KnifeToolService implements IKnifeToolService {
         if(!StringUtil.isBlank(model.getName())) {
             model.setName(model.getName().trim().toUpperCase());
         }
+        model.setTimestamp(new Date());
         if(model.getId() == null) {
             knifeGeneralMapper.insertSelective(model);
         } else {
