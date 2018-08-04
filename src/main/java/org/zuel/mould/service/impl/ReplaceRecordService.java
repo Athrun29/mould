@@ -87,7 +87,7 @@ public class ReplaceRecordService implements IReplaceRecordService {
         vo.setTarRad(model.getTarRad());
         vo.setTarLen(model.getTarLen());
         vo.setRemark(model.getRemark());
-        vo.setCreateTime(DateUtil.getDateStrStandard(model.getCreateTime()));
+        vo.setCreateTimeStr(DateUtil.getDateStrStandard(model.getCreateTime()));
         return vo;
     }
 
@@ -99,10 +99,10 @@ public class ReplaceRecordService implements IReplaceRecordService {
             criteria.andIdEqualTo(queryModel.getId());
         }
         if(!StringUtil.isBlank(queryModel.getSrcName())) {
-            criteria.andSrcNameLike(queryModel.getSrcName().trim().toUpperCase());
+            criteria.andSrcNameLike(StringUtil.createLikeStrUpperCase(queryModel.getSrcName()));
         }
         if(!StringUtil.isBlank(queryModel.getTarName())) {
-            criteria.andTarNameLike(queryModel.getTarName().trim().toUpperCase());
+            criteria.andTarNameLike(StringUtil.createLikeStrUpperCase(queryModel.getTarName()));
         }
         return example;
     }

@@ -1,16 +1,9 @@
 package org.zuel.mould.vo;
 
 import lombok.Data;
+import org.zuel.mould.bean.BaseDic;
 
 @Data
-public class BaseDicVo {
-
-    private Long id;
-
-    private String code;
-
-    private String name;
-
-    private String remark;
+public class BaseDicVo extends BaseDic {
 
 }

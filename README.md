@@ -331,7 +331,7 @@ return: json
                 tarRad: 0.0,  // 新半径
                 tarLen: 0.0,  // 新长度
                 remark: '备注', 
-                createTime: '创建时间' 
+                createTimeStr: '创建时间' 
             }
         ]
     }

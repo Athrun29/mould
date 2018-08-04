@@ -402,15 +402,17 @@ public class StringUtil {
                 zero = '0';
             }
             prefix += digit[chDig[i] - '0']; // 转化该数字表示
-            if (idx > 0)
+            if (idx > 0) {
                 prefix += hunit[idx - 1];
+            }
             if (idx == 0 && vidx > 0) {
                 prefix += vunit[vidx - 1]; // 段结束位置应该加上段名如万,亿
             }
         }
 
-        if (prefix.length() > 0)
+        if (prefix.length() > 0) {
             prefix += '圆'; // 如果整数部分存在,则有圆的字样
+        }
         return prefix + suffix; // 返回正确表示
     }
 
@@ -444,8 +446,9 @@ public class StringUtil {
      * @return
      */
     public static String encoding(String src) {
-        if (src == null)
+        if (src == null) {
             return "";
+        }
         StringBuilder result = new StringBuilder();
         if (src != null) {
             src = src.trim();
@@ -512,8 +515,9 @@ public class StringUtil {
      * @return
      */
     public static String decoding(String src) {
-        if (src == null)
+        if (src == null) {
             return "";
+        }
         String result = src;
         result = result.replace("&quot;", "\"").replace("&apos;", "\'");
         result = result.replace("&lt;", "<").replace("&gt;", ">");
@@ -521,6 +525,14 @@ public class StringUtil {
         result = result.replace("&pc;", "%").replace("&ul", "_");
         result = result.replace("&shap;", "#").replace("&ques", "?");
         return result;
+    }
+
+    public static String createLikeStrUpperCase(String queryStr) {
+        return createLikeStr(queryStr.trim().toUpperCase());
+    }
+
+    public static String createLikeStr(String queryStr) {
+        return "%" + queryStr + "%";
     }
 
     /**

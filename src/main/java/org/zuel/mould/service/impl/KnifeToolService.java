@@ -8,10 +8,7 @@ import org.zuel.mould.bean.KnifeGeneral;
 import org.zuel.mould.bean.KnifeGeneralExample;
 import org.zuel.mould.dao.KnifeGeneralMapper;
 import org.zuel.mould.service.IKnifeToolService;
-import org.zuel.mould.util.ReqPager;
-import org.zuel.mould.util.RespMsg;
-import org.zuel.mould.util.RespUtil;
-import org.zuel.mould.util.StringUtil;
+import org.zuel.mould.util.*;
 import org.zuel.mould.vo.KnifeGeneralVo;
 
 import java.util.ArrayList;
@@ -113,6 +110,7 @@ public class KnifeToolService implements IKnifeToolService {
     private KnifeGeneralVo model2vo(KnifeGeneral model) {
         KnifeGeneralVo vo = new KnifeGeneralVo();
         vo.setId(model.getId());
+        vo.setName(model.getName());
         vo.setCode(model.getCode());
         vo.setDia(model.getDia());
         vo.setRad(model.getRad());
@@ -126,10 +124,10 @@ public class KnifeToolService implements IKnifeToolService {
         example.setDistinct(true);
         KnifeGeneralExample.Criteria criteria = example.createCriteria();
         if(!StringUtil.isBlank(queryModel.getCode())) {
-            criteria.andCodeLike(queryModel.getCode());
+            criteria.andCodeLike(StringUtil.createLikeStrUpperCase(queryModel.getCode()));
         }
         if(!StringUtil.isBlank(queryModel.getName())) {
-            criteria.andNameLike(queryModel.getName().trim().toUpperCase());
+            criteria.andNameLike(StringUtil.createLikeStrUpperCase(queryModel.getName()));
         }
         return example;
     }
