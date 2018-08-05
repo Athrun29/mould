@@ -1,6 +1,7 @@
 package org.zuel.mould.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zuel.mould.service.IJobExecuteService;
@@ -15,7 +16,7 @@ public class JobExecuteController {
     IJobExecuteService jobExecuteService;
 
     @RequestMapping("ncJob")
-    public RespMsg handleNcDir(NcPathVo ncPathVo) throws Exception {
+    public RespMsg handleNcDir(@RequestBody NcPathVo ncPathVo) throws Exception {
         return jobExecuteService.handleNcDir(ncPathVo);
     }
 }

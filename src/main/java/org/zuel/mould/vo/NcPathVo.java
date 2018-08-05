@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class NcPathVo implements Serializable {
 
-    private String inputPath;
+    private String input;
 
-    private String outputPath;
+    private String output;
 }

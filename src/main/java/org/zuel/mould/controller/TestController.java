@@ -32,8 +32,8 @@ public class TestController {
     @RequestMapping(value = "/home")
     public RespMsg home(@RequestBody NcPathVo ncPathVo) throws RuntimeException {
         NcPathVo returnPahtVo = new NcPathVo();
-        returnPahtVo.setInputPath(ncPathVo.getInputPath());
-        returnPahtVo.setOutputPath("newPath");
+        returnPahtVo.setInput(ncPathVo.getInput());
+        returnPahtVo.setOutput("newPath");
         System.out.println("Get request.");
         return RespUtil.success(returnPahtVo);
     }
@@ -41,8 +41,8 @@ public class TestController {
     @RequestMapping(value = "/ncJob")
     public RespMsg handleNcDir() throws Exception {
         NcPathVo ncPathVo = new NcPathVo();
-        ncPathVo.setInputPath("/Users/athrun/Work/Docs/mould/730-1220");
-        ncPathVo.setOutputPath("/Users/athrun/Work/Docs/mould");
+        ncPathVo.setInput("/Users/athrun/Work/Docs/mould/730-1220");
+        ncPathVo.setOutput("/Users/athrun/Work/Docs/mould");
         return jobExecuteService.handleNcDir(ncPathVo);
     }
 
@@ -62,8 +62,8 @@ public class TestController {
     public RespMsg param(@RequestParam("input") String inputPath, @RequestParam("output") String outputPath) throws Exception {
         System.out.println(inputPath + ", " + outputPath);
         NcPathVo ncPathVo = new NcPathVo();
-        ncPathVo.setInputPath(inputPath);
-        ncPathVo.setOutputPath(outputPath);
+        ncPathVo.setInput(inputPath);
+        ncPathVo.setOutput(outputPath);
         return jobExecuteService.handleNcDir(ncPathVo);
     }
 

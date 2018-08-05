@@ -30,22 +30,21 @@ public class JobExecuteService implements IJobExecuteService {
     public RespMsg handleNcDir(NcPathVo ncPathVo) {
         DateFormat dateFormat = new SimpleDateFormat(NcConstant.DATE_FORMAT_MINI);
         String curTime = dateFormat.format(new Date());
-        String resultPath = ncPathVo.getOutputPath() + File.separator + NcConstant.PROCESS_HANDLE_DIR + "_" + curTime;
+        String resultPath = ncPathVo.getOutput() + File.separator + NcConstant.PROCESS_HANDLE_DIR + "_" + curTime;
         try {
-            if (StringUtil.isBlank(ncPathVo.getInputPath()) || StringUtil.isBlank(ncPathVo.getOutputPath())) {
+            if (StringUtil.isBlank(ncPathVo.getInput()) || StringUtil.isBlank(ncPathVo.getOutput())) {
                 throw new DefinedException(RespEnum.PATH_ERROR);
             }
             long beginTime = System.currentTimeMillis();
-            new NcJobExecutor().execute(ncPathVo.getInputPath(), resultPath, curTime);
+            new NcJobExecutor().execute(ncPathVo.getInput(), resultPath, curTime);
             long endTime = System.currentTimeMillis();
             System.out.println("NcJob cost: " + (endTime - beginTime));
-            return RespUtil.success("处理结果目录: " + resultPath + ", 用时: " + (endTime - beginTime) + "ms");
+            return RespUtil.success("文件夹名称: " + resultPath + ", 用时: " + (endTime - beginTime) + "ms");
         } catch (Exception e) {
             try {
                 FileUtil.clearDir(resultPath);
                 Files.deleteIfExists(Paths.get(resultPath));
-            } catch(IOException ioe) {
-
+            } catch(Exception err) {
             }
             return RespUtil.error(0, e.getMessage());
         }
